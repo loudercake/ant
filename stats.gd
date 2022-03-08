@@ -15,6 +15,7 @@ func _ready():
 	timer.connect("timeout",self,"timeouteh")
 
 func _process(delta):
+	print(health)
 	if is_health_lose == true:
 		health -= losehp
 		emit_signal("health_update",health)

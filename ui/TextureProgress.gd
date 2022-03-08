@@ -4,12 +4,18 @@ var valueup = false
 signal init
 
 func _ready():
-	visible = true
-
+	value = max_value
+	visible = false
+func _process(delta):
+	if value != max_value:
+		visible = true
+	else:
+		visible = false
 
 
 
 
 
 func _on_stats_health_update(healf):
+	visible = true
 	value = healf
