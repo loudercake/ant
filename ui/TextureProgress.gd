@@ -6,15 +6,9 @@ signal init
 func _ready():
 	value = max_value
 	visible = false
+	
 func _process(delta):
-	if value != max_value:
-		visible = true
-	else:
-		visible = false
-
-
-
-
+	visible = value > 0 and value < max_value
 
 func _on_stats_health_update(healf):
 	visible = true

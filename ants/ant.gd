@@ -74,13 +74,13 @@ func _on_Area2D_chaos():
 	Fire.global_position = position
 	speed = 400
 	
-
-
-func _on_stats_death():
-	queue_free()
-
-
 func _on_stats_burn():
 	self.add_child(Fire)
 	Fire.global_position = position
 	speed = 400
+
+	$DeathAnimationTimer.start()
+
+
+func _on_DeathAnimationTimer_timeout():
+	queue_free()

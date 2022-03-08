@@ -131,6 +131,10 @@ anims/vertical = SubResource( 4 )
 max_value = 100.0
 value = 100.0
 
+[node name="DeathAnimationTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="stats" parent="." instance=ExtResource( 5 )]
 
 [connection signal="area_entered" from="Area2D" to="Area2D" method="_on_Area2D_area_entered"]
@@ -140,6 +144,7 @@ value = 100.0
 [connection signal="health_lose" from="Area2D" to="stats" method="_on_Area2D_health_lose"]
 [connection signal="health_not_lose" from="Area2D" to="stats" method="_on_Area2D_health_not_lose"]
 [connection signal="timeout" from="Area2D/Timer" to="Area2D" method="_on_Timer_timeout"]
+[connection signal="timeout" from="DeathAnimationTimer" to="." method="_on_DeathAnimationTimer_timeout"]
 [connection signal="burn" from="stats" to="." method="_on_stats_burn"]
 [connection signal="death" from="stats" to="." method="_on_stats_death"]
 [connection signal="health_update" from="stats" to="TextureProgress" method="_on_stats_health_update"]
