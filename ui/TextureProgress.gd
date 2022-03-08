@@ -4,11 +4,12 @@ var valueup = false
 signal init
 
 func _ready():
-	visible = false
-func _process(delta):
-	if valueup == true:
-		value = ant.get_node("Area2D/Timer").get_time_left()
-
-func _on_Area2D_chaos():
 	visible = true
-	valueup = true
+
+
+
+
+
+
+func _on_stats_health_update(healf):
+	value = healf

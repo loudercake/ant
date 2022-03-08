@@ -69,12 +69,18 @@ func rngee(a,b):
 
 
 
-func _on_Area2D_death():
-	queue_free()
-
-
 func _on_Area2D_chaos():
 	self.add_child(Fire)
 	Fire.global_position = position
 	speed = 400
 	
+
+
+func _on_stats_death():
+	queue_free()
+
+
+func _on_stats_burn():
+	self.add_child(Fire)
+	Fire.global_position = position
+	speed = 400

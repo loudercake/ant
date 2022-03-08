@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://ants/Sprite-0002.png" type="Texture" id=1]
 [ext_resource path="res://ants/ant.gd" type="Script" id=2]
 [ext_resource path="res://ants/Area2D.gd" type="Script" id=3]
 [ext_resource path="res://ui/TextureProgress.tscn" type="PackedScene" id=4]
+[ext_resource path="res://ants/stats.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 20, 5 )
@@ -127,10 +128,18 @@ anims/horizontal = SubResource( 3 )
 anims/vertical = SubResource( 4 )
 
 [node name="TextureProgress" parent="." instance=ExtResource( 4 )]
+max_value = 100.0
+value = 100.0
+
+[node name="stats" parent="." instance=ExtResource( 5 )]
 
 [connection signal="area_entered" from="Area2D" to="Area2D" method="_on_Area2D_area_entered"]
 [connection signal="area_exited" from="Area2D" to="Area2D" method="_on_Area2D_area_exited"]
-[connection signal="chaos" from="Area2D" to="." method="_on_Area2D_chaos"]
 [connection signal="chaos" from="Area2D" to="TextureProgress" method="_on_Area2D_chaos"]
 [connection signal="death" from="Area2D" to="." method="_on_Area2D_death"]
+[connection signal="health_lose" from="Area2D" to="stats" method="_on_Area2D_health_lose"]
+[connection signal="health_not_lose" from="Area2D" to="stats" method="_on_Area2D_health_not_lose"]
 [connection signal="timeout" from="Area2D/Timer" to="Area2D" method="_on_Timer_timeout"]
+[connection signal="burn" from="stats" to="." method="_on_stats_burn"]
+[connection signal="death" from="stats" to="." method="_on_stats_death"]
+[connection signal="health_update" from="stats" to="TextureProgress" method="_on_stats_health_update"]

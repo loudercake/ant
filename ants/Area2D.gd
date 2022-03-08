@@ -5,7 +5,8 @@ var chaos = false
 onready var timer = $Timer
 signal death
 signal chaos
-
+signal health_lose
+signal health_not_lose
 func _process(delta):
 	timeleft = timer.get_time_left()
 	if timeleft < 1.5 && timeleft != 0 && chaos == false:
@@ -13,16 +14,10 @@ func _process(delta):
 		death()
 
 func _on_Area2D_area_entered(area):
-	if chaos == false:
-		timer.set_paused(false)
-		timer.start()
+	emit_signal("health_lose")
 
 func _on_Area2D_area_exited(area):
-	if chaos == false:
-		timer.start()
-		timer.set_paused(true)
-
-
+	emit_signal("health_not_lose")
 func _on_Timer_timeout():
 	emit_signal("death")
 func death():
